@@ -6,7 +6,7 @@ import com.github.phisgr.gatling.kt.grpc.action.GrpcCallActionBuilder;
 import io.gatling.javaapi.core.ScenarioBuilder;
 import io.gatling.javaapi.core.Simulation;
 import io.grpc.ManagedChannelBuilder;
-import org.pidu.proto.Main;
+import org.pidu.javamalloc.Main;
 import org.pidu.proto.GreeterGrpc;
 import org.pidu.proto.GreetingsServer;
 
@@ -18,7 +18,7 @@ import static io.gatling.javaapi.core.CoreDsl.scenario;
 public class GatlingSimulation extends Simulation {
 
     final String text = createText();
-    final StaticGrpcProtocol protocol = GrpcDsl.grpc(ManagedChannelBuilder.forAddress("memory-fragment-test.default.svc.cluster.local", Main.PORT).usePlaintext())
+    final StaticGrpcProtocol protocol = GrpcDsl.grpc(ManagedChannelBuilder.forAddress("memory-fragment-test-v2.default.svc.cluster.local", Main.PORT).usePlaintext())
             .disableWarmUp()
             .shareChannel();
 

@@ -1,0 +1,12 @@
+ ./gradlew build
+ docker build -t memory-fragment-test:v2.0 .
+ docker tag memory-fragment-test:v2.0 kaixin-registry:12345/memory-fragment-test:v2.0
+ docker push kaixin-registry:12345/memory-fragment-test:v2.0
+ kubectl delete deployment memory-fragment-test-v2
+ kubectl apply -f deploy\deployment-v2.yaml
+
+
+ ---
+ docker build -f deploy\Dockerfile-client -t memory-client:v2.0 .
+ docker tag memory-client:v2.0 kaixin-registry:12345/memory-client:v2.0
+ docker push kaixin-registry:12345/memory-client:v2.0

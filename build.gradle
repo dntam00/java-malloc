@@ -71,8 +71,7 @@ protobuf {
 
 jib {
     from {
-        // Use JDK 21 base image for container
-        image = "eclipse-temurin:21-jdk-jammy"
+        image = "eclipse-temurin:17-jdk-jammy"
     }
     to {
         image = "pidu/javamalloc"
