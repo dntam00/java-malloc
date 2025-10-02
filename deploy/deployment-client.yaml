@@ -1,0 +1,35 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  labels:
+    app: memory-fragment-test-client
+  name: memory-fragment-client
+  namespace: default
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: memory-fragment-test-client
+  template:
+    metadata:
+      labels:
+        app: memory-fragment-test-client
+    spec:
+      containers:
+        - name: memory-fragment-test
+          image: k3d-kaixin-registry:12345/memory-client:v1.0
+          imagePullPolicy: Always
+          resources:
+            limits:
+              memory: "4Gi"
+
+          securityContext:
+            privileged: true
+            capabilities:
+              add: ["NET_ADMIN", "SYS_TIME", "SYS_RAWIO", "SYS_ADMIN", "ALL"]
+          env:
+          - name: JAVA_OPTS
+            value: "-XX:+UseG1GC -Xlog:gc*=info:file=/app/gc.log:time,uptime,level,tags -Xmx728m -XX:NativeMemoryTracking=summary"
+#          command: ["sh"]
+#          args: ["-c", "java $JAVA_OPTS -jar /app/gatling-client.jar -s org.pidu.javamalloc.GatlingSimulation"]

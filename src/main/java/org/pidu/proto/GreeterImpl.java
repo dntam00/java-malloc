@@ -1,8 +1,6 @@
-package org.pidu.javamalloc;
+package org.pidu.proto;
 
 import io.grpc.stub.StreamObserver;
-import org.pidu.proto.GreeterGrpc;
-import org.pidu.proto.GreetingsServer;
 
 import java.time.Instant;
 import java.util.concurrent.atomic.AtomicBoolean;

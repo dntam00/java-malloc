@@ -1,4 +1,4 @@
-package org.pidu.javamalloc;
+package org.pidu.proto;
 
 import io.grpc.Grpc;
 import io.grpc.InsecureServerCredentials;
